@@ -2,9 +2,11 @@ package Foodorderingsystem.repository;
 
 import Foodorderingsystem.model.Order;
 
+import java.util.List;
+
 public interface OrderRepository {
     Order saveOrder(Order order);
-    Order findByCustomerId(String customerId);
-    Order findByRestaurantId(String restaurantId);
+    List<Order> findByCustomerId(String customerId);
+    List<Order> findByRestaurantId(String restaurantId);
     Order findByOrderId(String orderId);
 }

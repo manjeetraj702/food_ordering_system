@@ -8,18 +8,18 @@ import java.util.List;
 
 public class OrderController {
     OrderServiceImpl orderService=OrderServiceImpl.getInstance();
-    Order placeOder(String id, String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice, String status)
+    public Order placeOder(String id, String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice, String status)
     {
-        return orderService.placeOder(id,customerId,restaurantId,foodItems,totalPrice,status);
+        return orderService.placeOder(customerId,restaurantId,foodItems,totalPrice,status);
     }
-    Order getOrdersByCustomerId(String customerId){
+    public List<Order> getOrdersByCustomerId(String customerId){
         return orderService.getOrdersByCustomerId(customerId);
     }
 
-    Order getOrdersByRestaurantId(String restaurantId){
+    public List<Order> getOrdersByRestaurantId(String restaurantId){
         return orderService.getOrdersByRestaurantId(restaurantId);
     }
-    Order updateOrderStatus(String orderId,String status){
+    public Order updateOrderStatus(String orderId,String status){
         return orderService.updateOrderStatus(orderId,status);
     }
 }

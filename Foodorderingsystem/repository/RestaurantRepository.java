@@ -10,4 +10,6 @@ public interface RestaurantRepository {
     Restaurant findByRestaurantId(String ownerId);
     Restaurant updateRestaurant(String restaurantId, List<FoodItem> foodItems);
     boolean removeRestaurant(String restaurantId);
+
+    List<Restaurant> getAllRestaurant();
 }

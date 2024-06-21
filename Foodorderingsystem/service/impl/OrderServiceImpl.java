@@ -19,16 +19,19 @@ public class OrderServiceImpl implements OrderService {
         }
         return  orderService;
     }
+    static int id=0;
+
+    RestaurantServiceImpl restaurantService=RestaurantServiceImpl.getInstance();
     @Override
-    public Order placeOder(String id, String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice, String status) {
-        Order order=new Order(id,customerId,restaurantId,foodItems,totalPrice,status);
+    public Order placeOder( String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice, String status) {
+        Order order=new Order("order"+(++id),customerId,restaurantId,foodItems,totalPrice,status);
         orderRepository.saveOrder(order);
         return order;
     }
 
     @Override
-    public Order getOrdersByCustomerId(String customerId) {
-        Order order=orderRepository.findByCustomerId(customerId);
+    public List<Order> getOrdersByCustomerId(String customerId) {
+        List<Order> order=orderRepository.findByCustomerId(customerId);
         if(order!=null)
         {
             return order;
@@ -37,8 +40,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrdersByRestaurantId(String restaurantId) {
-        Order order=orderRepository.findByRestaurantId(restaurantId);
+    public List<Order> getOrdersByRestaurantId(String restaurantId) {
+        List<Order> order=orderRepository.findByRestaurantId(restaurantId);
         if(order!=null)
         {
             return order;

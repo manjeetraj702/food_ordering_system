@@ -15,21 +15,28 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public Order findByCustomerId(String customerId) {
+    public List<Order> findByCustomerId(String customerId) {
+        List<Order> orderList1=new ArrayList<>();
         for(Order order:orderList)
         {
-            if(order.getCustomerId().equals(customerId)) return order;
+            if(order.getCustomerId().equals(customerId))
+            {
+                orderList1.add(order);
+            }
         }
-        return null;
+        return orderList1;
     }
 
     @Override
-    public Order findByRestaurantId(String restaurantId) {
+    public List<Order> findByRestaurantId(String restaurantId) {
+        List<Order> orderList1=new ArrayList<>();
         for(Order order:orderList)
         {
-            if(order.getRestaurantId().equals(restaurantId)) return  order;
+            if(order.getRestaurantId().equals(restaurantId)){
+                orderList1.add(order);
+            }
         }
-        return null;
+        return orderList1;
     }
 
     @Override

@@ -47,4 +47,9 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
         }
         return false;
     }
+
+    @Override
+    public List<Restaurant> getAllRestaurant() {
+        return restaurantList;
+    }
 }

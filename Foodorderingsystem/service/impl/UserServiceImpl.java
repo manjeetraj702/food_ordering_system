@@ -29,18 +29,24 @@ public class UserServiceImpl implements UserService {
                 return "EmailId already exist";
             }
         }
-        User user=new User(String.valueOf(++id),userName,password,email,role);
+        User user=new User("user"+(++id),userName,password,email,role);
         userRepository.saveUser(user);
         return "Your userid is  "+id;
     }
 
     @Override
-    public User login(String userName, String password) {
+    public String login(String userName, String password) {
         User user=userRepository.findByUserName(userName);
-        if(user!=null)
-            if(user.getPassword().equals(password))
-                return user;
-        return null;
+        if(user!=null){
+            if(user.getPassword().equals(password) && user.getRole().equals("OWNER")){
+                return "Successfully login as owner";}
+            else if(user.getPassword().equals(password) ){
+                return "Successfully login as customer";}
+            else {
+                return "Password is incorrect";
+            }
+        }
+        return "Username is invalid";
     }
 
     @Override
