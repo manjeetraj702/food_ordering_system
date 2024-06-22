@@ -53,25 +53,27 @@ public class UI {
                 System.out.println("Enter password");
                 String password=sc.next();
                 User user=userController.login(username,password);
-                if(user.getRole().equals("OWNER"))
+                if(user!=null && user.getRole().equals("OWNER"))
                 {
                     while(true) {
                         System.out.println("please enter \n1 for create restaurant \n2 for update Restaurant \n3 for delete restaurant  ");
                         System.out.println("4 for get all details of restaurant \n5 for add food Items in restaurant \n6 for update food item");
                         System.out.println("7 for update order status \n8 get all orders of restaurant \n0 for Log out");
                         Restaurant restaurant1=restaurantController.getRestaurantByOwnerId(user.getId());
+                        sc.nextLine();
                         String inp2 = sc.nextLine();
+//                        sc.nextLine();
                         if (inp2.equals("1")) {
+                            // to create restaurant
 //                        String ownerId, String name, String address, String phone
                             if(restaurant1!=null)
                             {
                                 System.out.println("This user have already created Restaurant");
                                 continue;
                             }
-                            sc.nextLine();
                             System.out.println("Enter Name of Restaurant");
                             String name = sc.nextLine();
-                            sc.nextLine();
+//                            sc.nextLine();
                             System.out.println("Enter your Restaurant address");
                             String address = sc.nextLine();
                             System.out.println("Enter your phone no");
@@ -97,6 +99,7 @@ public class UI {
                                 System.out.println("your restaurant "+name+" Created");
                             }
                         } else if (inp2.equals("2")) {
+                            // to update restaurant
                             if(restaurant1==null)
                             {
                                 System.out.println(" please first create Restaurant");
@@ -111,6 +114,7 @@ public class UI {
                             String address = sc.nextLine();
                             restaurantController.updateRestaurant(restaurant1.getId(),name,address);
                         } else if (inp2.equals("3")) {
+                            // to delete restaurant
                             if(restaurant1==null)
                             {
                                 System.out.println(" There is no Restaurant at this userId");
@@ -119,6 +123,7 @@ public class UI {
                             restaurantController.deleteRestaurant(restaurant1.getId());
                             System.out.println("Restaurant deleted");
                         } else if (inp2.equals("4")) {
+                            // to get all details of restaurant
                             if(restaurant1==null)
                             {
                                 System.out.println(" please first create Restaurant");
@@ -132,6 +137,7 @@ public class UI {
                                 System.out.println(foodItem.getName()+"  "+foodItem.getPrice()+"/-");
                             }
                         } else if (inp2.equals("5")) {
+                            // to add food items in restaurant
                             if(restaurant1==null)
                             {
                                 System.out.println(" please first create Restaurant");
@@ -187,6 +193,7 @@ public class UI {
                             }
                             restaurantController.addFoodItems(restaurant1.getOwnerId(),foodItems);
                         } else if (inp2.equals("6")) {
+                            // to update food item
                             if(restaurant1==null)
                             {
                                 System.out.println(" please first create Restaurant");
@@ -262,6 +269,7 @@ public class UI {
                             foodItemController.updateFoodItem(id,price,availabilty);
 
                         } else if (inp2.equals("7")) {
+                            // to update order status
                         List<Order> orderList=    orderController.getOrdersByRestaurantId(restaurant1.getId());
                             System.out.println(" OrderId           OrderStatus");
                         for(Order order: orderList)
@@ -303,6 +311,7 @@ public class UI {
                             orderController.updateOrderStatus(id,status);
 
                         } else if (inp2.equals("8")) {
+                            // to get all details of restaurant orders
                           List<Order>  orderList=orderController.getOrdersByRestaurantId(restaurant1.getId());
                             for (Order order:orderList)
                             {
@@ -314,19 +323,21 @@ public class UI {
                               }
                             }
                         } else if (inp2.equals("0")) {
+                            // to log out
                             break;
                         }
                         else {
                             System.out.println("Invalid entry");
                         }
                     }
-                } else if (user.getRole().equals("CUSTOMER")) {
+                } else if (user!=null && user.getRole().equals("CUSTOMER")) {
                     while (true)
                     {
                         System.out.println("Enter \n1 for Place a order \n2 for get your all order details \n0 for Log out");
                         String inp2= sc.next();
                         if(inp2.equals("1"))
                         {
+                            // to place order by customer
 //                            String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice
                             String id=user.getId();
                             List<Restaurant> restaurantList= restaurantController.getAllRestaurant();
@@ -382,6 +393,7 @@ public class UI {
                             String totalPrice=String.valueOf(to_pri);
                             orderController.placeOder(user.getId(),restaurant.getId(),orderFoodItemList,totalPrice);
                         } else if (inp2.equals("2")) {
+                            // to get details of all orders of customer
                             List<Order>  orderList=orderController.getOrdersByCustomerId(user.getId());
                             for (Order order:orderList)
                             {
@@ -393,6 +405,7 @@ public class UI {
                                 }
                             }
                         } else if (inp2.equals("0")) {
+                            // to log out
                             break;
                         }
                         else {
@@ -403,6 +416,7 @@ public class UI {
             }
             else if(inp1.equals("0"))
             {
+                // to close application
                 break;
             }
             else {

@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         }
         User user=new User("user"+(++id),userName,password,email,role);
         userRepository.saveUser(user);
-        return "Your userid is  "+id;
+        return "Your userid is  "+"user"+id+"\nsuccessfully signup";
     }
 
     @Override
