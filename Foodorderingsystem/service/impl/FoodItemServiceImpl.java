@@ -18,10 +18,10 @@ public class FoodItemServiceImpl implements FoodItemService {
     }
     static int id=0;
     @Override
-    public String addFoodItem( String restaurantId, String name, String description, String price, boolean availabilty) {
+    public FoodItem addFoodItem( String restaurantId, String name, String description, String price, boolean availabilty) {
         FoodItem foodItem=new FoodItem("food"+(++id),restaurantId,name,description,price,availabilty);
         foodItemRepository.saveFoodItem(foodItem);
-        return "food"+(++id);
+        return foodItem;
     }
 
     @Override

@@ -21,16 +21,16 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
     static int id=0;
     @Override
-    public Restaurant createRestaurant( String ownerId, String name, String address, String phone, List<FoodItem> foodItems) {
-        Restaurant restaurant=new Restaurant("Restaurant"+(++id),ownerId,name,address,phone,foodItems);
+    public Restaurant createRestaurant( String ownerId, String name, String address, String phone) {
+        Restaurant restaurant=new Restaurant("Restaurant"+(++id),ownerId,name,address,phone);
         restaurantRepository.saveRestaurant(restaurant);
         return restaurant;
     }
 
     @Override
-    public Restaurant updateRestaurant(String restaurantId,List<FoodItem> foodItems) {
+    public Restaurant updateRestaurant(String restaurantId,String name, String address) {
 
-        return restaurantRepository.updateRestaurant(restaurantId,foodItems);
+        return restaurantRepository.updateRestaurant(restaurantId,name, address);
     }
 
     @Override
@@ -48,5 +48,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public List<Restaurant> getAllRestaurant() {
         return restaurantRepository.getAllRestaurant();
+    }
+
+    @Override
+    public void addFoodItems(String ownerId, List<FoodItem> foodItems) {
+        Restaurant restaurant=restaurantRepository.findByRestaurantId(ownerId);
+        restaurant.addFoodItems(foodItems);
     }
 }

@@ -8,20 +8,24 @@ import java.util.List;
 
 public class RestaurantController {
     RestaurantServiceImpl restaurantService =new RestaurantServiceImpl();
-    Restaurant createRestaurant( String ownerId, String name, String address, String email, List<FoodItem> foodItems)
+    public Restaurant createRestaurant( String ownerId, String name, String address, String phone)
     {
-        return restaurantService.createRestaurant(ownerId,name,address,email,foodItems);
+        return restaurantService.createRestaurant(ownerId,name,address,phone);
     }
-    Restaurant updateRestaurant(String restaurantId,List<FoodItem> foodItems){
-        return restaurantService.updateRestaurant(restaurantId,foodItems);
+    public Restaurant updateRestaurant(String restaurantId, String name, String address){
+        return restaurantService.updateRestaurant(restaurantId,  name,  address);
     }
-    boolean deleteRestaurant(String restaurantId){
+    public boolean deleteRestaurant(String restaurantId){
         return  restaurantService.deleteRestaurant(restaurantId);
     }
-    Restaurant getRestaurantByOwnerId(String ownerId){
+    public Restaurant getRestaurantByOwnerId(String ownerId){
         return restaurantService.getRestaurantByOwnerId(ownerId);
     }
-    List<Restaurant> getAllRestaurant(){
+    public List<Restaurant> getAllRestaurant(){
         return restaurantService.getAllRestaurant();
+    }
+
+    public void addFoodItems(String ownerId, List<FoodItem> foodItems) {
+        restaurantService.addFoodItems(ownerId,foodItems);
     }
 }

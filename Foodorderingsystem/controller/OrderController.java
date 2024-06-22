@@ -8,9 +8,9 @@ import java.util.List;
 
 public class OrderController {
     OrderServiceImpl orderService=OrderServiceImpl.getInstance();
-    public Order placeOder(String id, String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice, String status)
+    public Order placeOder( String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice)
     {
-        return orderService.placeOder(customerId,restaurantId,foodItems,totalPrice,status);
+        return orderService.placeOder(customerId,restaurantId,foodItems,totalPrice);
     }
     public List<Order> getOrdersByCustomerId(String customerId){
         return orderService.getOrdersByCustomerId(customerId);

@@ -10,14 +10,17 @@ public class Order {
     private List<FoodItem> foodItems=new ArrayList<>();
     private String totalPrice;
     private String status;
-
-    public Order(String id, String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice, String status) {
+    public String toString()
+    {
+        return "id "+this.id+"\ncustomerId "+this.customerId+"\nrestaurantId "+this.restaurantId+"\n totalPrice"+this.totalPrice+"\nStatus "+this.status;
+    }
+    public Order(String id, String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice) {
         this.id = id;
         this.customerId = customerId;
         this.restaurantId = restaurantId;
         this.foodItems = foodItems;
         this.totalPrice = totalPrice;
-        this.status = status;
+        this.status = "IN_PROGRESS";
     }
 
     public String getId() {

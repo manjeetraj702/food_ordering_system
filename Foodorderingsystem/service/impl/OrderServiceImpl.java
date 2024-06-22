@@ -23,8 +23,8 @@ public class OrderServiceImpl implements OrderService {
 
     RestaurantServiceImpl restaurantService=RestaurantServiceImpl.getInstance();
     @Override
-    public Order placeOder( String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice, String status) {
-        Order order=new Order("order"+(++id),customerId,restaurantId,foodItems,totalPrice,status);
+    public Order placeOder( String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice) {
+        Order order=new Order("order"+(++id),customerId,restaurantId,foodItems,totalPrice);
         orderRepository.saveOrder(order);
         return order;
     }

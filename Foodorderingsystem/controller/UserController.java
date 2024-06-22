@@ -9,7 +9,7 @@ public class UserController {
     {
          return userService.register(userName,password,email,role);
     }
-    public String login(String userName,String password)
+    public User login(String userName,String password)
     {
         return userService.login(userName,password);
     }

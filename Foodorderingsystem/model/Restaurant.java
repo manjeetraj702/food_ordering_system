@@ -11,13 +11,12 @@ public class Restaurant {
     private String phone;
     private List<FoodItem> foodItems =new ArrayList<>();
 
-    public Restaurant(String id, String ownerId, String name, String address, String phone, List<FoodItem> foodItems) {
+    public Restaurant(String id, String ownerId, String name, String address, String phone) {
         this.id = id;
         this.ownerId = ownerId;
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.foodItems = foodItems;
     }
 
     public String getId() {
@@ -64,7 +63,7 @@ public class Restaurant {
         return foodItems;
     }
 
-    public void setFoodItems(List<FoodItem> foodItems) {
-        this.foodItems = foodItems;
+    public void addFoodItems(List<FoodItem> foodItems) {
+        this.foodItems.addAll(foodItems);
     }
 }

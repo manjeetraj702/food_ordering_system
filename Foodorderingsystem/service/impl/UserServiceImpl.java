@@ -35,18 +35,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(String userName, String password) {
+    public User login(String userName, String password) {
         User user=userRepository.findByUserName(userName);
         if(user!=null){
             if(user.getPassword().equals(password) && user.getRole().equals("OWNER")){
-                return "Successfully login as owner";}
+                System.out.println( "Successfully login as owner");
+            return user;}
             else if(user.getPassword().equals(password) ){
-                return "Successfully login as customer";}
+                System.out.println("Successfully login as customer");
+            return user;}
             else {
-                return "Password is incorrect";
+                System.out.println( "Password is incorrect");
+                return null;
             }
         }
-        return "Username is invalid";
+        System.out.println( "Username is invalid");
+        return null;
     }
 
     @Override

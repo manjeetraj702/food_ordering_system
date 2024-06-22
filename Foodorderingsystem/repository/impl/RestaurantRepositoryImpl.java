@@ -25,11 +25,12 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     }
 
     @Override
-    public Restaurant updateRestaurant(String restaurantId,List<FoodItem> foodItems) {
+    public Restaurant updateRestaurant(String restaurantId,String name, String address) {
         for(Restaurant restaurant:restaurantList)
         {
             if(restaurant.getId().equals(restaurantId)) {
-                restaurant.setFoodItems(foodItems);
+                restaurant.setName(name);
+                restaurant.setAddress(address);
                 return restaurant;
             }
         }
