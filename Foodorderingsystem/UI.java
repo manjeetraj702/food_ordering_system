@@ -28,7 +28,16 @@ public class UI {
             if (inp1.equals("1")) {
                 sc.nextLine();
                 System.out.println("Enter  Username");
-                String username = sc.nextLine();
+                String username;
+                while (true) {
+                    username = sc.nextLine();
+                    username = username.trim();
+                    if (username.equals("")) {
+                        System.out.println("You enter blank username");
+                        continue;
+                    }
+                    break;
+                }
                 System.out.println("Enter password");
                 String password = sc.next();
                 System.out.println("Enter email");
@@ -45,7 +54,17 @@ public class UI {
             } else if (inp1.equals("2")) {
                 sc.nextLine();
                 System.out.println("Enter  Username");
-                String username = sc.nextLine();
+                String username;
+                while (true)
+                {
+                    username = sc.nextLine();
+                    username = username.trim();
+                if (username.equals("")) {
+                    System.out.println("You enter balnk username");
+                    continue;
+                }
+                break;
+            }
                 System.out.println("Enter password");
                 String password = sc.next();
                 User user = userController.login(username, password);
@@ -66,9 +85,29 @@ public class UI {
                             }
                             sc.nextLine();
                             System.out.println("Enter Name of Restaurant");
-                            String name = sc.nextLine();
+                            String name;
+                            while(true) {
+                                name = sc.nextLine();
+                                name = name.trim();
+                                if (name.equals("")) {
+                                    System.out.println("You enter blank restaurant name");
+                                    continue;
+                                }
+                                break;
+                            }
                             System.out.println("Enter your Restaurant address");
-                            String address = sc.nextLine();
+                            String address ;
+                            while(true)
+                            {
+                                address = sc.nextLine();
+                                address=address.trim();
+                                if(address.equals(""))
+                                {
+                                    System.out.println("you have enter blank address");
+                                    continue;
+                                }
+                                break;
+                            }
                             System.out.println("Enter your phone no");
                             String phone;
                             while (true) {
@@ -98,10 +137,33 @@ public class UI {
                             }
                             // String restaurantId, String name, String address
                             System.out.println("Enter Name of Restaurant");
-                            String name = sc.nextLine();
+                            String name;
+                            while(true)
+                            {
+                            name = sc.nextLine();
+                            name=name.trim();
+                            if(name.equals(""))
+                            {
+                                System.out.println("you have enter blank");
+                                continue;
+                            }
+                            break;
+
+                            }
 //                            sc.nextLine();
                             System.out.println("Enter your Restaurant address");
-                            String address = sc.nextLine();
+                            String address ;
+                            while(true)
+                            {
+                                address = sc.nextLine();
+                                address=address.trim();
+                                if(address.equals(""))
+                                {
+                                    System.out.println("you have enter blank address");
+                                    continue;
+                                }
+                                break;
+                            }
                             restaurantController.updateRestaurant(restaurant1.getId(), name, address);
                         } else if (inp2.equals("3")) {
                             // to delete restaurant
@@ -137,10 +199,29 @@ public class UI {
                                 //String restaurantId, String name, String description, String price, boolean availabilty
                                 sc.nextLine();
                                 System.out.println("Enter food item name");
-                                String name = sc.nextLine();
-                                sc.nextLine();
+                                String name;
+                                while (true) {
+                                     name = sc.nextLine();
+                                    name = name.trim();
+                                    if (name.equals("")) {
+                                        System.out.println("You enter blank name");
+                                        continue;
+                                    }
+                                    break;
+                                }
+//                                sc.nextLine();
                                 System.out.println("Enter food description");
-                                String description = sc.nextLine();
+                                String description;
+                                while (true) {
+                                    description = sc.nextLine();
+                                    description=description.trim();
+                                    if(description.equals(""))
+                                    {
+                                        System.out.println("you enter blank description");
+                                        continue;
+                                    }
+                                    break;
+                                }
                                 double p;
                                 System.out.println("Enter price");
                                 String price;
@@ -320,8 +401,16 @@ public class UI {
                             while (true) {
                                 int i1 = 0;
                                 for (FoodItem foodItem : foodItemList) {
-                                    System.out.println(++i + " ");
-                                    System.out.println(" " + foodItem.getName() + "     " + foodItem.getPrice() + "/-");
+                                    String available ;
+                                    if(foodItem.isAvailabilty())
+                                    {
+                                        available="available";
+                                    }
+                                    else {
+                                        available=" not available";
+                                    }
+                                    System.out.print(++i + " ");
+                                    System.out.println(" " + foodItem.getName() + "     " + foodItem.getPrice() + "/-"+"   "+available);
                                 }
                                 System.out.println("Enter foodItem number to get in your order list");
                                 System.out.println("Enter 0 to get total price");
@@ -343,9 +432,14 @@ public class UI {
                                     break;
                                 }
                                 FoodItem foodItem = foodItemList.get(option1 - 1);
-                                orderFoodItemList.add(foodItem);
-                                double f_p = Double.valueOf(foodItem.getPrice());
-                                to_pri += f_p;
+                                if(foodItem.isAvailabilty()) {
+                                    orderFoodItemList.add(foodItem);
+                                    double f_p = Double.valueOf(foodItem.getPrice());
+                                    to_pri += f_p;
+                                }
+                                else {
+                                    System.out.println("This food item is not available . ");
+                                }
                             }
                             String totalPrice = String.valueOf(to_pri);
                             orderController.placeOder(user.getId(), restaurant.getId(), orderFoodItemList, totalPrice);
@@ -354,9 +448,10 @@ public class UI {
                             List<Order> orderList = orderController.getOrdersByCustomerId(user.getId());
                             for (Order order : orderList) {
                                 System.out.println(order);
-                                System.out.println(" FoodName          price");
+                                System.out.println(" FoodName          price  available");
                                 for (FoodItem foodItem : order.getFoodItems()) {
-                                    System.out.println(" " + foodItem.getName() + "     " + foodItem.getPrice() + "/-");
+
+                                    System.out.println(" " + foodItem.getName() + "     " + foodItem.getPrice() + "/-"+"    ");
                                 }
                             }
                         } else if (inp2.equals("0")) {
