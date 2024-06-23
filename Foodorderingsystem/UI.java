@@ -24,6 +24,7 @@ public class UI {
         {
             System.out.println("Please enter \n1 for SignUp \n2 for Sign in \n0 for Close Application");
             String inp1= sc.next();
+            inp1=inp1.trim();
             if(inp1.equals("1"))
             {
                 sc.nextLine();
@@ -33,7 +34,7 @@ public class UI {
                 String password=sc.next();
                 System.out.println("Enter email");
                 String email=sc.next();
-                System.out.println("if you are Owner choose 1 or enter else\n");
+                System.out.println("if you are Owner choose 1 or enter else");
                 String role=sc.next();
                 if(role.equals("1"))
                 {
@@ -43,7 +44,7 @@ public class UI {
                     role="CUSTOMER";
                 }
 
-                System.out.println(userController.register(username,password,email,role));
+                System.out.println(userController.register(username,password,email,role)+"\n");
             }
             else if(inp1.equals("2"))
             {
@@ -60,9 +61,8 @@ public class UI {
                         System.out.println("4 for get all details of restaurant \n5 for add food Items in restaurant \n6 for update food item");
                         System.out.println("7 for update order status \n8 get all orders of restaurant \n0 for Log out");
                         Restaurant restaurant1=restaurantController.getRestaurantByOwnerId(user.getId());
-                        sc.nextLine();
-                        String inp2 = sc.nextLine();
-//                        sc.nextLine();
+                        String inp2 = sc.next();
+                        inp2=inp2.trim();
                         if (inp2.equals("1")) {
                             // to create restaurant
 //                        String ownerId, String name, String address, String phone
@@ -71,9 +71,9 @@ public class UI {
                                 System.out.println("This user have already created Restaurant");
                                 continue;
                             }
+                            sc.nextLine();
                             System.out.println("Enter Name of Restaurant");
                             String name = sc.nextLine();
-//                            sc.nextLine();
                             System.out.println("Enter your Restaurant address");
                             String address = sc.nextLine();
                             System.out.println("Enter your phone no");
@@ -106,10 +106,9 @@ public class UI {
                                 continue;
                             }
                            // String restaurantId, String name, String address
-                            sc.nextLine();
                             System.out.println("Enter Name of Restaurant");
                             String name = sc.nextLine();
-                            sc.nextLine();
+//                            sc.nextLine();
                             System.out.println("Enter your Restaurant address");
                             String address = sc.nextLine();
                             restaurantController.updateRestaurant(restaurant1.getId(),name,address);
@@ -130,7 +129,7 @@ public class UI {
                                 continue;
                             }
                             System.out.println("Owner id = "+restaurant1.getOwnerId()+"\nRestaurant Name = "+restaurant1.getName());
-                            System.out.println("Restaurant address = "+ restaurant1.getAddress()+"Restaurant phoneNO ="+restaurant1.getPhone() );
+                            System.out.println("Restaurant address = "+ restaurant1.getAddress()+"\nRestaurant phoneNO ="+restaurant1.getPhone() );
                             System.out.println("Restaurant menu");
                             for(FoodItem foodItem: restaurant1.getFoodItems())
                             {
@@ -270,6 +269,11 @@ public class UI {
 
                         } else if (inp2.equals("7")) {
                             // to update order status
+                            if(restaurant1==null)
+                            {
+                                System.out.println(" please first create Restaurant");
+                                continue;
+                            }
                         List<Order> orderList=    orderController.getOrdersByRestaurantId(restaurant1.getId());
                             System.out.println(" OrderId           OrderStatus");
                         for(Order order: orderList)
@@ -312,6 +316,11 @@ public class UI {
 
                         } else if (inp2.equals("8")) {
                             // to get all details of restaurant orders
+                            if(restaurant1==null)
+                            {
+                                System.out.println(" please first create Restaurant");
+                                continue;
+                            }
                           List<Order>  orderList=orderController.getOrdersByRestaurantId(restaurant1.getId());
                             for (Order order:orderList)
                             {
@@ -330,11 +339,13 @@ public class UI {
                             System.out.println("Invalid entry");
                         }
                     }
+                    //Customer methods
                 } else if (user!=null && user.getRole().equals("CUSTOMER")) {
                     while (true)
                     {
                         System.out.println("Enter \n1 for Place a order \n2 for get your all order details \n0 for Log out");
                         String inp2= sc.next();
+                        inp2=inp2.trim();
                         if(inp2.equals("1"))
                         {
                             // to place order by customer
@@ -368,7 +379,7 @@ public class UI {
                                 {
                                     try{
                                         option1=sc.nextInt();
-                                        if(option1<0 && option1>=foodItemList.size())
+                                        if(option1<0 && option1>foodItemList.size())
                                         {
                                             throw new Exception();
                                         }
