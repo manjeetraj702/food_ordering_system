@@ -5,6 +5,31 @@
 This API provides a set of RESTful endpoints for managing users, restaurants, food items, and orders in a food ordering system.
 
 #Endpoints
+# Usage
+
+1. Compile the application using javac UI.java
+2. Run the application using java UI
+3. Follow the prompts to sign up, log in, and use the application as a customer or restaurant owner.
+
+# Commands
+
+- 1 - Sign up
+- 2 - Log in
+- 0 - Close application
+- (As a customer)
+    - 1 - Place an order
+    - 2 - Get order details
+    - 0 - Log out
+- (As a restaurant owner)
+    - 1 - Create a restaurant
+    - 2 - Update restaurant details
+    - 3 - Delete restaurant
+    - 4 - Get restaurant details
+    - 5 - Add food items
+    - 6 - Update food item
+    - 7 - Update order status
+    - 8 - Get orders
+    - 0 - Log out
 
 # User Management
 
