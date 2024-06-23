@@ -22,7 +22,8 @@ public class UI {
         Scanner sc = new Scanner(System.in);
         System.out.println("\n\n         ---------------Food ordering app------------\n\n");
         while (true) {
-            System.out.println("Please enter \n1 for SignUp \n2 for Sign in \n0 for Close Application");
+            System.out.println("Please enter \n1 for SignUp \n2 for Sign in \n0 for Close Application\n\n");
+            System.out.println("-------------------------------------------------------------------------------");
             String inp1 = sc.next();
             inp1 = inp1.trim();
             if (inp1.equals("1")) {
@@ -60,7 +61,7 @@ public class UI {
                     username = sc.nextLine();
                     username = username.trim();
                 if (username.equals("")) {
-                    System.out.println("You enter balnk username");
+                    System.out.println("You enter blank username\n\n");
                     continue;
                 }
                 break;
@@ -72,7 +73,8 @@ public class UI {
                     while (true) {
                         System.out.println("please enter \n1 for create restaurant \n2 for update Restaurant \n3 for delete restaurant  ");
                         System.out.println("4 for get all details of restaurant \n5 for add food Items in restaurant \n6 for update food item");
-                        System.out.println("7 for update order status \n8 get all orders of restaurant \n0 for Log out");
+                        System.out.println("7 for update order status \n8 get all orders of restaurant \n0 for Log out\n\n");
+                        System.out.println("-------------------------------------------------------------------------------");
                         Restaurant restaurant1 = restaurantController.getRestaurantByOwnerId(user.getId());
                         String inp2 = sc.next();
                         inp2 = inp2.trim();
@@ -80,7 +82,7 @@ public class UI {
                             // to create restaurant
 //                        String ownerId, String name, String address, String phone
                             if (restaurant1 != null) {
-                                System.out.println("This user have already created Restaurant");
+                                System.out.println("This user have already created Restaurant\n");
                                 continue;
                             }
                             sc.nextLine();
@@ -90,7 +92,7 @@ public class UI {
                                 name = sc.nextLine();
                                 name = name.trim();
                                 if (name.equals("")) {
-                                    System.out.println("You enter blank restaurant name");
+                                    System.out.println("You enter blank restaurant name\n");
                                     continue;
                                 }
                                 break;
@@ -103,7 +105,7 @@ public class UI {
                                 address=address.trim();
                                 if(address.equals(""))
                                 {
-                                    System.out.println("you have enter blank address");
+                                    System.out.println("you have enter blank address\n");
                                     continue;
                                 }
                                 break;
@@ -116,7 +118,7 @@ public class UI {
                                     p = sc.nextLong();
                                 } catch (Exception e) {
                                     sc.nextLine();
-                                    System.out.println("Please enter valid number");
+                                    System.out.println("Please enter valid number\n");
                                     continue;
                                 }
                                 phone = String.valueOf(p);
@@ -144,7 +146,7 @@ public class UI {
                             name=name.trim();
                             if(name.equals(""))
                             {
-                                System.out.println("you have enter blank");
+                                System.out.println("you have enter blank\n");
                                 continue;
                             }
                             break;
@@ -159,7 +161,7 @@ public class UI {
                                 address=address.trim();
                                 if(address.equals(""))
                                 {
-                                    System.out.println("you have enter blank address");
+                                    System.out.println("you have enter blank address\n");
                                     continue;
                                 }
                                 break;
@@ -168,7 +170,7 @@ public class UI {
                         } else if (inp2.equals("3")) {
                             // to delete restaurant
                             if (restaurant1 == null) {
-                                System.out.println(" There is no Restaurant at this userId");
+                                System.out.println(" There is no Restaurant at this userId\n");
                                 continue;
                             }
                             restaurantController.deleteRestaurant(restaurant1.getId());
@@ -176,7 +178,7 @@ public class UI {
                         } else if (inp2.equals("4")) {
                             // to get all details of restaurant
                             if (restaurant1 == null) {
-                                System.out.println(" please first create Restaurant");
+                                System.out.println(" please first create Restaurant\n");
                                 continue;
                             }
                             System.out.println("Owner id = " + restaurant1.getOwnerId() + "\nRestaurant Name = " + restaurant1.getName());
@@ -188,7 +190,7 @@ public class UI {
                         } else if (inp2.equals("5")) {
                             // to add food items in restaurant
                             if (restaurant1 == null) {
-                                System.out.println(" please first create Restaurant");
+                                System.out.println(" please first create Restaurant\n");
                                 continue;
                             }
                             System.out.println("How many food items you want to add ?");
@@ -204,7 +206,7 @@ public class UI {
                                      name = sc.nextLine();
                                     name = name.trim();
                                     if (name.equals("")) {
-                                        System.out.println("You enter blank name");
+                                        System.out.println("You enter blank name\n");
                                         continue;
                                     }
                                     break;
@@ -217,7 +219,7 @@ public class UI {
                                     description=description.trim();
                                     if(description.equals(""))
                                     {
-                                        System.out.println("you enter blank description");
+                                        System.out.println("you enter blank description\n");
                                         continue;
                                     }
                                     break;
@@ -229,7 +231,7 @@ public class UI {
                                     try {
                                         p = sc.nextLong();
                                     } catch (Exception e) {
-                                        System.out.println("Please enter valid number");
+                                        System.out.println("Please enter valid number\n");
                                         continue;
                                     }
                                     price = String.valueOf(p);
@@ -246,7 +248,7 @@ public class UI {
                                         availabilty = false;
                                         break;
                                     } else {
-                                        System.out.println("please enter (y/n)");
+                                        System.out.println("please enter (y/n)\n");
                                     }
                                 }
                                 foodItems.add(foodItemController.addFoodItem(restaurant1.getId(), name, description, price, availabilty));
@@ -255,7 +257,7 @@ public class UI {
                         } else if (inp2.equals("6")) {
                             // to update food item
                             if (restaurant1 == null) {
-                                System.out.println(" please first create Restaurant");
+                                System.out.println(" please first create Restaurant\n");
                                 continue;
                             }
 //                            String foodItemId,String price,boolean availabilty
@@ -264,7 +266,7 @@ public class UI {
                                 System.out.println(++i);
                                 System.out.println(" Name =" + foodItem.getName());
                             }
-                            System.out.println("Enter number which food Item you wants to update");
+                            System.out.println("Enter number which food Item you wants to update\n");
                             int a;
                             while (true) {
                                 try {
@@ -273,7 +275,7 @@ public class UI {
                                         throw new Exception();
                                     }
                                 } catch (Exception e) {
-                                    System.out.println("Please enter valid number");
+                                    System.out.println("Please enter valid number\n");
                                     continue;
                                 }
                                 break;
@@ -292,14 +294,14 @@ public class UI {
                                 try {
                                     p = sc.nextLong();
                                 } catch (Exception e) {
-                                    System.out.println("Please enter valid number");
+                                    System.out.println("Please enter valid number\n");
                                     continue;
                                 }
                                 price = String.valueOf(p);
                                 break;
                             }
                             boolean availabilty;
-                            System.out.println("food availabilty (y/n)");
+                            System.out.println("food availabilty (y/n)\n");
                             while (true) {
                                 String check = sc.next();
                                 if (check.equals("Y") || check.equals("y")) {
@@ -309,7 +311,7 @@ public class UI {
                                     availabilty = false;
                                     break;
                                 } else {
-                                    System.out.println("please enter (y/n)");
+                                    System.out.println("please enter (y/n)\n");
                                 }
                             }
                             foodItemController.updateFoodItem(id, price, availabilty);
@@ -317,7 +319,7 @@ public class UI {
                         } else if (inp2.equals("7")) {
                             // to update order status
                             if (restaurant1 == null) {
-                                System.out.println(" please first create Restaurant");
+                                System.out.println(" please first create Restaurant\n");
                                 continue;
                             }
                             List<Order> orderList = orderController.getOrdersByRestaurantId(restaurant1.getId());
@@ -327,7 +329,7 @@ public class UI {
                             }
                             System.out.println("Enter order Id ");
                             String id = sc.next();
-                            System.out.println("Enter \n1 for PENDING \n2 for in  IN_PROGRESS \n 3 for COMPLETED");
+                            System.out.println("Enter \n1 for PENDING \n2 for in  IN_PROGRESS \n 3 for COMPLETED\n\n");
                             int a;
                             while (true) {
                                 try {
@@ -336,7 +338,7 @@ public class UI {
                                         throw new Exception();
                                     }
                                 } catch (Exception e) {
-                                    System.out.println("Please enter valid number");
+                                    System.out.println("Please enter valid number\n");
                                     continue;
                                 }
                                 break;
@@ -356,7 +358,7 @@ public class UI {
                         } else if (inp2.equals("8")) {
                             // to get all details of restaurant orders
                             if (restaurant1 == null) {
-                                System.out.println(" please first create Restaurant");
+                                System.out.println(" please first create Restaurant\n");
                                 continue;
                             }
                             List<Order> orderList = orderController.getOrdersByRestaurantId(restaurant1.getId());
@@ -377,7 +379,8 @@ public class UI {
                     //Customer methods
                 } else if (user != null && user.getRole().equals("CUSTOMER")) {
                     while (true) {
-                        System.out.println("Enter \n1 for Place a order \n2 for get your all order details \n0 for Log out");
+                        System.out.println("Enter \n1 for Place a order \n2 for get your all order details \n0 for Log out\n\n");
+                        System.out.println("-------------------------------------------------------------------------------");
                         String inp2 = sc.next();
                         inp2 = inp2.trim();
                         if (inp2.equals("1")) {
@@ -413,7 +416,7 @@ public class UI {
                                     System.out.println(" " + foodItem.getName() + "     " + foodItem.getPrice() + "/-"+"   "+available);
                                 }
                                 System.out.println("Enter foodItem number to get in your order list");
-                                System.out.println("Enter 0 to get total price");
+                                System.out.println("Enter 0 to get total price\n");
                                 int option1;
                                 while (true) {
                                     try {
@@ -438,7 +441,7 @@ public class UI {
                                     to_pri += f_p;
                                 }
                                 else {
-                                    System.out.println("This food item is not available . ");
+                                    System.out.println("This food item is not available .\n ");
                                 }
                             }
                             String totalPrice = String.valueOf(to_pri);
@@ -448,17 +451,18 @@ public class UI {
                             List<Order> orderList = orderController.getOrdersByCustomerId(user.getId());
                             for (Order order : orderList) {
                                 System.out.println(order);
-                                System.out.println(" FoodName          price  available");
+                                System.out.println(" FoodName          price  available\n");
                                 for (FoodItem foodItem : order.getFoodItems()) {
 
                                     System.out.println(" " + foodItem.getName() + "     " + foodItem.getPrice() + "/-"+"    ");
                                 }
+                                System.out.println("Total price of order is "+order.getTotalPrice()+"\n");
                             }
                         } else if (inp2.equals("0")) {
                             // to log out
                             break;
                         } else {
-                            System.out.println("Invalid entry");
+                            System.out.println("Invalid entry\n");
                         }
                     }
                 }
