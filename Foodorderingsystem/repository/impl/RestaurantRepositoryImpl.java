@@ -9,6 +9,8 @@ import java.util.List;
 
 public class RestaurantRepositoryImpl implements RestaurantRepository {
     private List<Restaurant> restaurantList=new ArrayList<>();
+private List<Restaurant> deletedRestaurantList=new ArrayList<>();
+
     @Override
     public Restaurant saveRestaurant(Restaurant restaurant) {
         restaurantList.add(restaurant);
@@ -43,6 +45,7 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
         {
             if(restaurant.getId().equals(restaurantId)) {
                 restaurantList.remove(restaurant);
+deletedRestaurantList.add(restaurant);
                 return true;
             }
         }
