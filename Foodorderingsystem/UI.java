@@ -412,7 +412,7 @@ public class UI {
                                     else {
                                         available=" not available";
                                     }
-                                    System.out.print(++i + " ");
+                                    System.out.print(++i1 + " ");
                                     System.out.println(" " + foodItem.getName() + "     " + foodItem.getPrice() + "/-"+"   "+available);
                                 }
                                 System.out.println("Enter foodItem number to get in your order list");
