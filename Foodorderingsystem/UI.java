@@ -232,6 +232,7 @@ public class UI {
                                         p = sc.nextLong();
                                     } catch (Exception e) {
                                         System.out.println("Please enter valid number\n");
+                                        sc.nextLine();
                                         continue;
                                     }
                                     price = String.valueOf(p);
@@ -334,18 +335,30 @@ public class UI {
                                 System.out.println("There is not any order");
                                 continue;
                             }
+                            int i=0;
                             System.out.println(" OrderId           OrderStatus");
                             for (Order order : orderList) {
-                                System.out.println(" " + order.getId() + "       " + order.getStatus());
+                                System.out.println(++i+" " + order.getId() + "       " + order.getStatus());
                             }
-                            System.out.println("Enter order Id ");
-                            String id = sc.next();
-                            System.out.println("Enter \n1 for PENDING \n2 for in  IN_PROGRESS \n 3 for COMPLETED\n\n");
+                            System.out.println("Enter order id ");
+                            String id;
+                            while (true) {
+                                try {
+                                     id = sc.next();
+                                     orderController.updateOrderStatus(id,"");
+                                }catch (Exception e)
+                                {
+                                    System.out.println("please valid order id");
+                                    continue;
+                                }
+                                break;
+                            }
+                            System.out.println("Enter \n1 for PENDING \n2 for in  IN_PROGRESS \n3 for COMPLETED\n\n");
                             int a;
                             while (true) {
                                 try {
                                     a = sc.nextInt();
-                                    if (a <= 0 && a > 4) {
+                                    if (a <= 0 || a > 3) {
                                         throw new Exception();
                                     }
                                 } catch (Exception e) {
@@ -359,10 +372,8 @@ public class UI {
                                 status = "PENDING";
                             } else if (a == 2) {
                                 status = "IN_PROGRESS";
-                            } else if (a == 3) {
-                                status = "COMPLETED";
                             } else {
-                                status = "error";
+                                status = "COMPLETED";
                             }
                             orderController.updateOrderStatus(id, status);
 
@@ -410,11 +421,29 @@ public class UI {
                             System.out.println("From which restaurant you wants to place a order \n");
                             int i = 0;
                             for (Restaurant restaurant : restaurantList) {
-                                System.out.println(++i);
-                                System.out.println(restaurant.getName());
+                                System.out.println(++i +" "+restaurant.getName());
                             }
                             System.out.println("Enter number");
-                            int option = sc.nextInt();
+
+                            int option ;
+                           while(true)
+                           {
+                               try {
+                                   option = sc.nextInt();
+                                   if(option<=0 || option>restaurantList.size())
+                                   {
+                                       throw new Exception();
+                                   }
+                               }
+                               catch (Exception e)
+                               {
+                                   System.out.println("please enter valid option");
+                                   sc.nextLine();
+                                   continue;
+                               }
+                               break;
+
+                           }
                             Restaurant restaurant = restaurantList.get(option - 1);
                             System.out.println(" FoodName          price");
                             double to_pri = 0;
@@ -440,7 +469,7 @@ public class UI {
                                 while (true) {
                                     try {
                                         option1 = sc.nextInt();
-                                        if (option1 < 0 && option1 > foodItemList.size()) {
+                                        if (option1 < 0 || option1 > foodItemList.size()) {
                                             throw new Exception();
                                         }
                                     } catch (Exception e) {
@@ -456,7 +485,7 @@ public class UI {
                                 FoodItem foodItem = foodItemList.get(option1 - 1);
                                 if(foodItem.isAvailabilty()) {
                                     orderFoodItemList.add(foodItem);
-                                    double f_p = Double.valueOf(foodItem.getPrice());
+                                    double f_p = Double.parseDouble(foodItem.getPrice());
                                     to_pri += f_p;
                                 }
                                 else {
