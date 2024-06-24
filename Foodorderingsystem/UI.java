@@ -43,7 +43,7 @@ public class UI {
                 String password = sc.next();
                 System.out.println("Enter email");
                 String email = sc.next();
-                System.out.println("if you are Owner choose 1 or enter else");
+                System.out.println("if you are Owner choose 1");
                 String role = sc.next();
                 if (role.equals("1")) {
                     role = "OWNER";
@@ -260,9 +260,15 @@ public class UI {
                                 System.out.println(" please first create Restaurant\n");
                                 continue;
                             }
+                            List<FoodItem> foodItemList=restaurant1.getFoodItems();
+                            if(foodItemList.isEmpty())
+                            {
+                                System.out.println("There is not food items to update");
+                                continue;
+                            }
 //                            String foodItemId,String price,boolean availabilty
                             int i = 0;
-                            for (FoodItem foodItem : restaurant1.getFoodItems()) {
+                            for (FoodItem foodItem : foodItemList) {
                                 System.out.println(++i);
                                 System.out.println(" Name =" + foodItem.getName());
                             }
@@ -281,7 +287,7 @@ public class UI {
                                 break;
                             }
                             String id = "";
-                            for (FoodItem foodItem : restaurant1.getFoodItems()) {
+                            for (FoodItem foodItem :foodItemList) {
                                 if (--a == 0) {
                                     id = foodItem.getId();
                                 }
@@ -323,6 +329,11 @@ public class UI {
                                 continue;
                             }
                             List<Order> orderList = orderController.getOrdersByRestaurantId(restaurant1.getId());
+                            if(orderList.isEmpty())
+                            {
+                                System.out.println("There is not any order");
+                                continue;
+                            }
                             System.out.println(" OrderId           OrderStatus");
                             for (Order order : orderList) {
                                 System.out.println(" " + order.getId() + "       " + order.getStatus());
@@ -362,6 +373,10 @@ public class UI {
                                 continue;
                             }
                             List<Order> orderList = orderController.getOrdersByRestaurantId(restaurant1.getId());
+                            if(orderList.isEmpty())
+                            {
+                                System.out.println("There is not any order");
+                            }
                             for (Order order : orderList) {
                                 System.out.println(order);
                                 System.out.println(" FoodName          price");
@@ -388,6 +403,10 @@ public class UI {
 //                            String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice
                             String id = user.getId();
                             List<Restaurant> restaurantList = restaurantController.getAllRestaurant();
+                            if(restaurantList.isEmpty())
+                            {
+                                System.out.println("There is no restaurant");
+                            }
                             System.out.println("From which restaurant you wants to place a order \n");
                             int i = 0;
                             for (Restaurant restaurant : restaurantList) {
@@ -449,6 +468,11 @@ public class UI {
                         } else if (inp2.equals("2")) {
                             // to get details of all orders of customer
                             List<Order> orderList = orderController.getOrdersByCustomerId(user.getId());
+                            if(orderList.isEmpty())
+                            {
+                                System.out.println("There is not any order");
+                                continue;
+                            }
                             for (Order order : orderList) {
                                 System.out.println(order);
                                 System.out.println(" FoodName          price  available\n");
