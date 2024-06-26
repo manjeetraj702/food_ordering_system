@@ -36,7 +36,9 @@ public class UserRepositoryImpl implements UserRepository {
     {
         for(User user:userList)
         {
-            if(user.getId().equals(userId)) return user;
+            if(user.getId().equals(userId)) {
+                return user;
+            }
         }
         return null;
     }

@@ -56,4 +56,29 @@ deletedRestaurantList.add(restaurant);
     public List<Restaurant> getAllRestaurant() {
         return restaurantList;
     }
+
+    @Override
+    public Restaurant addFoodItems(String ownerId, List<FoodItem> foodItems) {
+        for(Restaurant restaurant:restaurantList)
+        {
+            if(restaurant.getOwnerId().equals(ownerId))
+            {
+                restaurant.addFoodItems(foodItems);
+                return restaurant;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Restaurant getRestaurantByRestaurantId(String restaurantId) {
+        for(Restaurant restaurant:restaurantList)
+        {
+            if(restaurant.getId().equals(restaurantId))
+            {
+                return  restaurant;
+            }
+        }
+        return null;
+    }
 }

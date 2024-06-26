@@ -7,16 +7,16 @@ import Foodorderingsystem.service.impl.RestaurantServiceImpl;
 import java.util.List;
 
 public class RestaurantController {
-    RestaurantServiceImpl restaurantService =new RestaurantServiceImpl();
+    RestaurantServiceImpl restaurantService =RestaurantServiceImpl.getInstance();
     public Restaurant createRestaurant( String ownerId, String name, String address, String phone)
     {
         return restaurantService.createRestaurant(ownerId,name,address,phone);
     }
-    public Restaurant updateRestaurant(String restaurantId, String name, String address){
-        return restaurantService.updateRestaurant(restaurantId,  name,  address);
+    public Restaurant updateRestaurant(String ownerId,String restaurantId, String name, String address){
+        return restaurantService.updateRestaurant(ownerId,restaurantId,  name,  address);
     }
-    public boolean deleteRestaurant(String restaurantId){
-        return  restaurantService.deleteRestaurant(restaurantId);
+    public boolean deleteRestaurant(String ownerId,String restaurantId){
+        return  restaurantService.deleteRestaurant(ownerId,restaurantId);
     }
     public Restaurant getRestaurantByOwnerId(String ownerId){
         return restaurantService.getRestaurantByOwnerId(ownerId);

@@ -16,10 +16,10 @@ public class OrderController {
         return orderService.getOrdersByCustomerId(customerId);
     }
 
-    public List<Order> getOrdersByRestaurantId(String restaurantId){
-        return orderService.getOrdersByRestaurantId(restaurantId);
+    public List<Order> getOrdersByRestaurantId(String ownerId,String restaurantId){
+        return orderService.getOrdersByRestaurantId(ownerId,restaurantId);
     }
-    public Order updateOrderStatus(String orderId,String status){
-        return orderService.updateOrderStatus(orderId,status);
+    public Order updateOrderStatus(String ownerId,String orderId,String status){
+        return orderService.updateOrderStatus(orderId,orderId,status);
     }
 }

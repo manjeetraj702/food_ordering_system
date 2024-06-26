@@ -6,7 +6,7 @@ import Foodorderingsystem.service.UserService;
 
 public class UserServiceImpl implements UserService {
     static UserServiceImpl userService=null;
-    static UserServiceImpl getInstance()
+    public static UserServiceImpl getInstance()
     {
         if(userService==null) {
             userService=new UserServiceImpl();
@@ -54,10 +54,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserProfile(String userId) {
-        User user=userRepository.findByUserId(userId);
-        if(user!=null) {return user;}
+    public User getUserByUserId(String userId) {
+        return userRepository.findByUserId(userId);
 
-        return null;
     }
 }

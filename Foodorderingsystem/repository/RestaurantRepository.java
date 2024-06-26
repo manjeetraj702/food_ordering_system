@@ -12,4 +12,8 @@ public interface RestaurantRepository {
     boolean removeRestaurant(String restaurantId);
 
     List<Restaurant> getAllRestaurant();
+
+    Restaurant addFoodItems(String ownerId, List<FoodItem> foodItems);
+
+    Restaurant getRestaurantByRestaurantId(String restaurantId);
 }

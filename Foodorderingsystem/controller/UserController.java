@@ -4,7 +4,7 @@ import Foodorderingsystem.model.User;
 import Foodorderingsystem.service.impl.UserServiceImpl;
 
 public class UserController {
-    UserServiceImpl userService=new UserServiceImpl();
+    UserServiceImpl userService=UserServiceImpl.getInstance();
     public String register( String userName, String password, String email, String role)
     {
          return userService.register(userName,password,email,role);
@@ -15,6 +15,6 @@ public class UserController {
     }
     public User getUserProfile(String userId)
     {
-        return userService.getUserProfile(userId);
+        return userService.getUserByUserId(userId);
     }
 }
