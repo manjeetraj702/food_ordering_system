@@ -1,5 +1,6 @@
 package Foodorderingsystem.service.impl;
 
+import Foodorderingsystem.Helper;
 import Foodorderingsystem.model.User;
 import Foodorderingsystem.repository.impl.UserRepositoryImpl;
 import Foodorderingsystem.service.UserService;
@@ -18,6 +19,14 @@ public class UserServiceImpl implements UserService {
     UserRepositoryImpl userRepository=new UserRepositoryImpl();
     @Override
     public String register(String userName,String password,String email,String role) {
+        if(!Helper.validate_password(password))
+        {
+            return "";
+        }
+        if(!Helper.validate_emailId(email))
+        {
+            return "";
+        }
         for(User user:userRepository.getListOfUser())
         {
             if(user.getUserName().equals(userName))
@@ -36,6 +45,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String userName, String password) {
+        if(!Helper.validate_password(password))
+        {
+            return null;
+        }
         User user=userRepository.findByUserName(userName);
         if(user!=null){
             if(user.getPassword().equals(password) && user.getRole().equals("OWNER")){

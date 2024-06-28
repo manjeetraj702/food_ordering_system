@@ -1,5 +1,6 @@
 package Foodorderingsystem.service.impl;
 
+import Foodorderingsystem.Helper;
 import Foodorderingsystem.model.FoodItem;
 import Foodorderingsystem.model.Restaurant;
 import Foodorderingsystem.model.User;
@@ -23,6 +24,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     UserServiceImpl userService=UserServiceImpl.getInstance();
     @Override
     public Restaurant createRestaurant( String ownerId, String name, String address, String phone) {
+        if(!Helper.validate_phoneNo(phone))
+        {
+            return null;
+        }
         User user=userService.getUserByUserId(ownerId);
         if(user!=null && user.getRole().equals("OWNER")) {
             Restaurant restaurant = new Restaurant("Restaurant" + (++id), ownerId, name, address, phone);
