@@ -1,9 +1,7 @@
 package Foodorderingsystem;
 
-import java.util.Scanner;
 
 public class Helper {
-    static Scanner sc = new Scanner(System.in);
 
     public static boolean validate_phoneNo(String phoneNo) {
         try {
@@ -76,6 +74,6 @@ public class Helper {
             return true;
         }
         System.out.println("please enter a valid email id (example:-chotu@gamil.com)");
-return false;
+       return false;
     }
 }
