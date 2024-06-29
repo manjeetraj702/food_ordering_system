@@ -27,6 +27,11 @@ public class OrderServiceImpl implements OrderService {
     RestaurantServiceImpl restaurantService=RestaurantServiceImpl.getInstance();
     @Override
     public Order placeOder( String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice) {
+        if(foodItems.isEmpty())
+        {
+            System.out.println("There is not food items in order placed.");
+            return  null;
+        }
         User user=userService.getUserByUserId(customerId);
         if(user==null || user.getRole()!="CUSTOMER")
         {

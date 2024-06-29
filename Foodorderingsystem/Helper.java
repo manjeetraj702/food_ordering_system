@@ -65,7 +65,7 @@ public class Helper {
                 check_back = 1;
                 continue;
             }
-            if (check_back == 1) {
+            if (check_back == 1 && a=='.') {
                 check_dot = 1;
                 break;
             }

@@ -17,18 +17,20 @@ This API provides a set of RESTful endpoints for managing users, restaurants, fo
 - 2 - Log in
 - 0 - Close application
 - (As a customer)
-    - 1 - Place an order
-    - 2 - Get order details
+    - 1 - view profile
+    - 2 - Place an order
+    - 3 - Get order details
     - 0 - Log out
 - (As a restaurant owner)
-    - 1 - Create a restaurant
-    - 2 - Update restaurant details
-    - 3 - Delete restaurant
-    - 4 - Get restaurant details
-    - 5 - Add food items
-    - 6 - Update food item
-    - 7 - Update order status
-    - 8 - Get orders
+    - 1 - view profile
+    - 2 - Create a restaurant
+    - 3 - Update restaurant details
+    - 4 - Delete restaurant
+    - 5 - Get restaurant details
+    - 6 - Add food items
+    - 7 - Update food item
+    - 8 - Update order status
+    - 9 - Get orders
     - 0 - Log out
 
 # User Management
