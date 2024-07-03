@@ -9,7 +9,7 @@ public class Restaurant {
     private String name;
     private String address;
     private String phone;
-    private List<FoodItem> foodItems =new ArrayList<>();
+    private List<FoodItem> foodItems = new ArrayList<>();
 
     public Restaurant(String id, String ownerId, String name, String address, String phone) {
         this.id = id;

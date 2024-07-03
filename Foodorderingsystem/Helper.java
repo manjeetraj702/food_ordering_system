@@ -65,15 +65,15 @@ public class Helper {
                 check_back = 1;
                 continue;
             }
-            if (check_back == 1 && a=='.') {
+            if (check_back == 1 && a == '.') {
                 check_dot = 1;
                 break;
             }
         }
-        if(check_dot == 1){
+        if (check_dot == 1) {
             return true;
         }
         System.out.println("please enter a valid email id (example:-chotu@gamil.com)");
-       return false;
+        return false;
     }
 }

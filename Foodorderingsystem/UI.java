@@ -15,10 +15,10 @@ import java.util.Scanner;
 
 public class UI {
     public static void main(String[] args) throws InterruptedException {
-        UserController userController = new UserController();
-        OrderController orderController = new OrderController();
-        RestaurantController restaurantController = new RestaurantController();
-        FoodItemController foodItemController = new FoodItemController();
+        UserController userController = UserController.getInstance();
+        OrderController orderController = OrderController.getInstance();
+        RestaurantController restaurantController = RestaurantController.getInstance();
+        FoodItemController foodItemController = FoodItemController.getInstance();
         Scanner sc = new Scanner(System.in);
         System.out.println("                           +------------------------------------+");
         System.out.println("                           |           Food ordering app        |");
@@ -541,7 +541,7 @@ public class UI {
                                     List<Restaurant> restaurantList = restaurantController.getAllRestaurant();
                                     if (restaurantList.isEmpty()) {
                                         System.out.println("There is no restaurant");
-                                        continue ;
+                                        continue;
                                     }
                                     System.out.println("From which restaurant you wants to place a order ?\n");
                                     int i = 0;
@@ -628,12 +628,11 @@ public class UI {
                                         }
                                     }
                                     String totalPrice = String.valueOf(to_pri);
-                                    if(orderFoodItemList.isEmpty())
-                                    {
+                                    if (orderFoodItemList.isEmpty()) {
                                         System.out.println("There is not food items in order placed.");
-                                        continue ;
+                                        continue;
                                     }
-                                    orderController.placeOder(user.getId(), restaurant.getId(), orderFoodItemList, totalPrice);
+                                    orderController.placeOrder(user.getId(), restaurant.getId(), orderFoodItemList, totalPrice);
                                     break;
                                 case "3":
                                     // to get details of all orders of customer

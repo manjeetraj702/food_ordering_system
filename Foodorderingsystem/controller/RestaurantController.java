@@ -7,25 +7,42 @@ import Foodorderingsystem.service.impl.RestaurantServiceImpl;
 import java.util.List;
 
 public class RestaurantController {
-    RestaurantServiceImpl restaurantService =RestaurantServiceImpl.getInstance();
-    public Restaurant createRestaurant( String ownerId, String name, String address, String phone)
-    {
-        return restaurantService.createRestaurant(ownerId,name,address,phone);
+    public static RestaurantController restaurantController = null;
+
+    public static synchronized RestaurantController getInstance() {
+        if (restaurantController == null) {
+            restaurantController = new RestaurantController();
+        }
+        return restaurantController;
     }
-    public Restaurant updateRestaurant(String ownerId,String restaurantId, String name, String address){
-        return restaurantService.updateRestaurant(ownerId,restaurantId,  name,  address);
+
+    private RestaurantController() {
+
     }
-    public boolean deleteRestaurant(String ownerId,String restaurantId){
-        return  restaurantService.deleteRestaurant(ownerId,restaurantId);
+
+    RestaurantServiceImpl restaurantService = RestaurantServiceImpl.getInstance();
+
+    public Restaurant createRestaurant(String ownerId, String name, String address, String phone) {
+        return restaurantService.createRestaurant(ownerId, name, address, phone);
     }
-    public Restaurant getRestaurantByOwnerId(String ownerId){
+
+    public Restaurant updateRestaurant(String ownerId, String restaurantId, String name, String address) {
+        return restaurantService.updateRestaurant(ownerId, restaurantId, name, address);
+    }
+
+    public boolean deleteRestaurant(String ownerId, String restaurantId) {
+        return restaurantService.deleteRestaurant(ownerId, restaurantId);
+    }
+
+    public Restaurant getRestaurantByOwnerId(String ownerId) {
         return restaurantService.getRestaurantByOwnerId(ownerId);
     }
-    public List<Restaurant> getAllRestaurant(){
+
+    public List<Restaurant> getAllRestaurant() {
         return restaurantService.getAllRestaurant();
     }
 
     public void addFoodItems(String ownerId, List<FoodItem> foodItems) {
-        restaurantService.addFoodItems(ownerId,foodItems);
+        restaurantService.addFoodItems(ownerId, foodItems);
     }
 }

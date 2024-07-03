@@ -8,8 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantRepositoryImpl implements RestaurantRepository {
-    private List<Restaurant> restaurantList=new ArrayList<>();
-private List<Restaurant> deletedRestaurantList=new ArrayList<>();
+    public static RestaurantRepositoryImpl restaurantRepository = null;
+
+    public static synchronized RestaurantRepositoryImpl getInstance() {
+        if (restaurantRepository == null) {
+            restaurantRepository = new RestaurantRepositoryImpl();
+        }
+        return restaurantRepository;
+    }
+
+    private RestaurantRepositoryImpl() {
+
+    }
+
+    private List<Restaurant> restaurantList = new ArrayList<>();
+    private List<Restaurant> deletedRestaurantList = new ArrayList<>();
 
     @Override
     public Restaurant saveRestaurant(Restaurant restaurant) {
@@ -19,18 +32,16 @@ private List<Restaurant> deletedRestaurantList=new ArrayList<>();
 
     @Override
     public Restaurant findByRestaurantId(String ownerId) {
-        for(Restaurant restaurant:restaurantList)
-        {
-            if(restaurant.getOwnerId().equals(ownerId)) return restaurant;
+        for (Restaurant restaurant : restaurantList) {
+            if (restaurant.getOwnerId().equals(ownerId)) return restaurant;
         }
         return null;
     }
 
     @Override
-    public Restaurant updateRestaurant(String restaurantId,String name, String address) {
-        for(Restaurant restaurant:restaurantList)
-        {
-            if(restaurant.getId().equals(restaurantId)) {
+    public Restaurant updateRestaurant(String restaurantId, String name, String address) {
+        for (Restaurant restaurant : restaurantList) {
+            if (restaurant.getId().equals(restaurantId)) {
                 restaurant.setName(name);
                 restaurant.setAddress(address);
                 return restaurant;
@@ -41,11 +52,10 @@ private List<Restaurant> deletedRestaurantList=new ArrayList<>();
 
     @Override
     public boolean removeRestaurant(String restaurantId) {
-        for(Restaurant restaurant:restaurantList)
-        {
-            if(restaurant.getId().equals(restaurantId)) {
+        for (Restaurant restaurant : restaurantList) {
+            if (restaurant.getId().equals(restaurantId)) {
                 restaurantList.remove(restaurant);
-deletedRestaurantList.add(restaurant);
+                deletedRestaurantList.add(restaurant);
                 return true;
             }
         }
@@ -59,10 +69,8 @@ deletedRestaurantList.add(restaurant);
 
     @Override
     public Restaurant addFoodItems(String ownerId, List<FoodItem> foodItems) {
-        for(Restaurant restaurant:restaurantList)
-        {
-            if(restaurant.getOwnerId().equals(ownerId))
-            {
+        for (Restaurant restaurant : restaurantList) {
+            if (restaurant.getOwnerId().equals(ownerId)) {
                 restaurant.addFoodItems(foodItems);
                 return restaurant;
             }
@@ -72,11 +80,9 @@ deletedRestaurantList.add(restaurant);
 
     @Override
     public Restaurant getRestaurantByRestaurantId(String restaurantId) {
-        for(Restaurant restaurant:restaurantList)
-        {
-            if(restaurant.getId().equals(restaurantId))
-            {
-                return  restaurant;
+        for (Restaurant restaurant : restaurantList) {
+            if (restaurant.getId().equals(restaurantId)) {
+                return restaurant;
             }
         }
         return null;

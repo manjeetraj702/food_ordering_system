@@ -7,13 +7,10 @@ public class Order {
     private String id;
     private String customerId;
     private String restaurantId;
-    private List<FoodItem> foodItems=new ArrayList<>();
+    private List<FoodItem> foodItems = new ArrayList<>();
     private String totalPrice;
     private String status;
-    public String toString()
-    {
-        return "id "+this.id+"\ncustomerId "+this.customerId+"\nrestaurantId "+this.restaurantId+"\n totalPrice"+this.totalPrice+"\nStatus "+this.status;
-    }
+
     public Order(String id, String customerId, String restaurantId, List<FoodItem> foodItems, String totalPrice) {
         this.id = id;
         this.customerId = customerId;
